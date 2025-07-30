@@ -5,6 +5,7 @@ Simple Rust-based tool to convert images into ASCII art and export as '.png'. I 
 ## Installation
 
 You need to have [Rust](https://www.rust-lang.org/tools/install) installed.
+
 cargo install --git https://github.com/Mira1n5/asciify
 
 ## Usage
