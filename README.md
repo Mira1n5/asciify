@@ -14,4 +14,4 @@ cargo install --git https://github.com/Mira1n5/asciify
 
 ## Usage
 
-asciify image_name.jpg
+asciify <image_path>
