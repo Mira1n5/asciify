@@ -1,6 +1,17 @@
 mod image_creator;
 use image::{GenericImageView, imageops::FilterType};
 use std::env;
+use std::fs;
+
+fn generate_unique_filename() -> String {
+    for i in 1.. {
+        let filename = format!("ascii_output_{}.png", i);
+        if !fs::metadata(&filename).is_ok() {
+            return filename;
+        }
+    }
+    "ascii_output.png".to_string() // fallback
+}
 
 const ASCII_CHARS: &[u8] = b"`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
 
@@ -41,6 +52,7 @@ fn main() {
         ascii.push(row);
     }
 
-    image_creator::create_image_from_ascii(&ascii, "ascii.output.png");
-    println!("Done! The ASCII image has been saved to ascii.output.png");
+   let filename = generate_unique_filename();
+    image_creator::create_image_from_ascii(&ascii, &filename);
+    println!("Done! The ASCII image has been saved to {}", filename);
 }
