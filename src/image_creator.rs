@@ -2,9 +2,8 @@ use image::{ImageBuffer, Rgba};
 use rusttype::{Font, Scale, point};
 
 pub fn create_image_from_ascii(ascii: &Vec<Vec<char>>, output_path: &str) {
-   let font_data = std::fs::read("/System/Library/Fonts/Supplemental/Andale Mono.ttf")
-    .expect("Couldn't load font");
-    let font = Font::try_from_vec(font_data).expect("Couldn't parse the font");
+   let font_data = include_bytes!("../fonts/JetBrainsMono-VariableFont_wght.ttf") as &[u8];
+    let font = Font::try_from_bytes(font_data).expect("Couldn't parse the font");
     let scale = Scale::uniform(12.0); 
 
     let char_width = 8;
